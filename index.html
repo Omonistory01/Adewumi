@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adewumi’s Herbs – Birthday Sales</title>
+
+    <style>
+             body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url('ab.JPG') no-repeat center center/cover;
+    background-attachment: fixed;
+    color: white;
+        }
+
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.45);
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 26px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* SECTION STYLES */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 30px 20px;
+        }
+
+        h1 { font-size: 52px; margin: 10px; }
+        h3 { font-size: 28px; }
+
+        .cta {
+            background: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .cta:hover {
+            background: #1f7f35;
+        }
+
+        /* FORM SECTION */
+        #orderSection {
+            display: none;
+        }
+
+        .form-box, .success-box {
+            background: rgba(255,255,255,0.92);
+            padding: 35px;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 12px;
+            color: black;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            background: #28a745;
+            padding: 15px;
+            border-radius: 6px;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #1e7e34;
+        }
+
+        /* SUCCESS SECTION */
+        #successSection {
+            display: none;
+        }
+
+        .back {
+            margin-top: 20px;
+            display: inline-block;
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<header>Adewumi’s Herbs</header>
+
+<!-- ============================= -->
+<!-- LANDING SECTION -->
+<!-- ============================= -->
+<section id="homeSection">
+    <h3>Limited Offer</h3>
+    <h1>BIRTHDAY SALES</h1>
+    <p style="font-size:20px;">Massive Discount on All Purchases</p>
+    <p><strong>1st – 9th December, 2025</strong></p>
+
+    <div style="margin-top:20px;">
+        <p>📞 09159438064</p>
+        <p>🌐 adewumiherbs@gmail.com</p>
+    </div>
+
+    <a class="cta" onclick="showForm()">SHOP NOW</a>
+</section>
+
+
+<!-- ============================= -->
+<!-- ORDER FORM SECTION -->
+<!-- ============================= -->
+<section id="orderSection">
+    <div class="form-box">
+        <h2>Place Your Order</h2>
+
+        <form id="orderForm">
+            <label>Full Name</label>
+            <input id="name" type="text" required>
+
+            <label>Phone Number</label>
+            <input id="phone" type="tel" required>
+
+            <label>Delivery Address</label>
+            <textarea id="address" required></textarea>
+
+            <label>Quantity</label>
+            <select id="qty" required>
+                <option value="">Select quantity</option>
+                <option>1 Bottle</option>
+                <option>2 Bottles</option>
+                <option>3 Bottles</option>
+                <option>5 Bottles</option>
+                <option>10 Bottles</option>
+            </select>
+
+            <button class="btn" type="submit">Submit Order</button>
+        </form>
+
+        <div class="back" onclick="showHome()">← Back to Home</div>
+    </div>
+</section>
+
+
+<!-- ============================= -->
+<!-- SUCCESS SECTION -->
+<!-- ============================= -->
+<section id="successSection">
+    <div class="success-box">
+        <h2 style="color:#28a745; font-size:32px;">🎉 Order Successful!</h2>
+        <p>Your order has been received.</p>
+        <p>We will contact you shortly to confirm delivery.</p>
+
+        <div class="back" onclick="showHome()">← Back to Home</div>
+    </div>
+</section>
+
+
+<script>
+function showForm() {
+    document.getElementById("homeSection").style.display = "none";
+    document.getElementById("orderSection").style.display = "flex";
+    document.getElementById("successSection").style.display = "none";
+}
+
+function showHome() {
+    document.getElementById("homeSection").style.display = "flex";
+    document.getElementById("orderSection").style.display = "none";
+    document.getElementById("successSection").style.display = "none";
+}
+
+function showSuccess() {
+    document.getElementById("homeSection").style.display = "none";
+    document.getElementById("orderSection").style.display = "none";
+    document.getElementById("successSection").style.display = "flex";
+}
+
+document.getElementById("orderForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+    let qty = document.getElementById("qty").value;
+
+    let message =
+        `Hello, I want to place an order:%0A%0A` +
+        `*Name:* ${name}%0A` +
+        `*Phone:* ${phone}%0A` +
+        `*Address:* ${address}%0A` +
+        `*Quantity:* ${qty}`;
+
+    let number = "2349159438064";  // Your WhatsApp number
+    let url = `https://wa.me/${number}?text=${message}`;
+
+    window.open(url, "_blank");
+
+    setTimeout(() => {
+        showSuccess();
+    }, 1500);
+});
+</script>
+
+</body>
+</html>
